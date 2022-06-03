@@ -15,6 +15,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     //MARK: Outlets
     @IBOutlet weak var tvMenu: UITableView!
     @IBOutlet weak var btnUpload: UIButton!
+    @IBOutlet weak var imageFoto: UIImageView!
     
     //MARK: Variables
     private let cells = [
@@ -58,7 +59,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         
         setupTable()
         
-        btnUpload.layer.cornerRadius = 25
+        btnUpload.layer.cornerRadius = 20
         
     }
     
@@ -85,7 +86,9 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         
         picker.didFinishPicking { [unowned picker] items, _ in
             if let photo = items.singlePhoto {
+                self.imageFoto.isHidden = false
                 self.image = photo.image
+                self.imageFoto.image = photo.image
             }
             
             picker.dismiss(animated: true)
@@ -118,8 +121,32 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
 
         // Create a reference to the file you want to upload
         if let name = userName{
-            let riversRef = storageRef.child("images/\(name).jpg")
-            riversRef.putData(data!, metadata: nil)
+            
+            if let photo = data{
+                let riversRef = storageRef.child("images/\(name).jpg")
+                riversRef.putData(photo, metadata: nil)
+            }else{
+                
+                let alertController = UIAlertController (title: "Aviso", message: "Tome una selfi para poderla subir" , preferredStyle: .alert)
+                
+                let settingsAction = UIAlertAction(title: "Ok", style: .default)
+                
+                alertController.addAction(settingsAction)
+                
+                present(alertController, animated: true, completion: nil)
+                
+            }
+            
+        }else{
+            
+            let alertController = UIAlertController (title: "Aviso", message: "Ingrese un nombre para poder subir la foto." , preferredStyle: .alert)
+            
+            let settingsAction = UIAlertAction(title: "Ok", style: .default)
+            
+            alertController.addAction(settingsAction)
+            
+            present(alertController, animated: true, completion: nil)
+            
         }
         
     }
