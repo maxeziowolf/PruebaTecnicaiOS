@@ -115,16 +115,24 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     @IBAction func onUploadClicked(_ sender: Any) {
         
         let storageRef = storage.reference()
-
+        
         // Data in memory
-        let data = image?.pngData()
-
+        let data = image?.jpegData(compressionQuality: 1)
+        
         // Create a reference to the file you want to upload
         if let name = userName{
             
             if let photo = data{
-                let riversRef = storageRef.child("images/\(name).jpg")
-                riversRef.putData(photo, metadata: nil)
+                let riversRef = storageRef.child("images/\(name)-\(Date().timeIntervalSinceNow).jpg")
+                riversRef.putData(photo, metadata: nil){_ in
+                    let alertController = UIAlertController (title: "Aviso", message: "Se subio correctamente la foto" , preferredStyle: .alert)
+                    
+                    let settingsAction = UIAlertAction(title: "Ok", style: .default)
+                    
+                    alertController.addAction(settingsAction)
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                }
             }else{
                 
                 let alertController = UIAlertController (title: "Aviso", message: "Tome una selfi para poderla subir" , preferredStyle: .alert)
