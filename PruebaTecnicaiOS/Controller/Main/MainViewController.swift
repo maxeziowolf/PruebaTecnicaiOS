@@ -124,7 +124,13 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
             
             if let photo = data{
                 let riversRef = storageRef.child("images/\(name)-\(Date().timeIntervalSinceNow).jpg")
-                riversRef.putData(photo, metadata: nil){_ in
+                riversRef.putData(photo, metadata: nil){ (metadata, error) in
+                    guard let metadata = metadata else {
+                        print(error)
+                        return
+                        
+                    }
+                    
                     let alertController = UIAlertController (title: "Aviso", message: "Se subio correctamente la foto" , preferredStyle: .alert)
                     
                     let settingsAction = UIAlertAction(title: "Ok", style: .default)
