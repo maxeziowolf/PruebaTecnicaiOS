@@ -17,6 +17,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oqe-Cd-emj">
+                                <rect key="frame" x="0.0" y="207.5" width="414" height="580.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="nzZ-of-JS7">
                                 <rect key="frame" x="40" y="128" width="334" height="59.5"/>
                                 <subviews>
@@ -40,10 +44,9 @@
                                     </imageView>
                                 </subviews>
                             </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oqe-Cd-emj">
-                                <rect key="frame" x="0.0" y="207.5" width="414" height="580.5"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="bl6-rs-G1w">
+                                <rect key="frame" x="197" y="465" width="20" height="20"/>
+                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UOF-x5-SZC">
                                 <rect key="frame" x="20" y="808" width="374" height="34"/>
                                 <color key="backgroundColor" red="0.23921568630000001" green="0.69803921570000005" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -58,7 +61,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="bl6-rs-G1w" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="8TR-Bw-m4F"/>
                             <constraint firstItem="nzZ-of-JS7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="8Ww-nC-2f5"/>
+                            <constraint firstItem="bl6-rs-G1w" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="99I-0N-FXZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nzZ-of-JS7" secondAttribute="trailing" constant="40" id="9iF-P2-T53"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oqe-Cd-emj" secondAttribute="trailing" id="Cwp-Sx-Ffj"/>
                             <constraint firstItem="UOF-x5-SZC" firstAttribute="top" secondItem="oqe-Cd-emj" secondAttribute="bottom" constant="20" id="MDf-j0-SVM"/>
@@ -72,6 +77,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="sNe-TF-8kh"/>
                     <connections>
+                        <outlet property="atvIndicator" destination="bl6-rs-G1w" id="rPg-O1-LeK"/>
                         <outlet property="btnUpload" destination="UOF-x5-SZC" id="tHG-4p-TvZ"/>
                         <outlet property="imageFoto" destination="Gq6-Du-lPY" id="nvW-Jk-JOo"/>
                         <outlet property="tvMenu" destination="oqe-Cd-emj" id="PM5-QY-bCV"/>

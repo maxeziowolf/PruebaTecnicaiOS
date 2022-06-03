@@ -16,6 +16,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var tvMenu: UITableView!
     @IBOutlet weak var btnUpload: UIButton!
     @IBOutlet weak var imageFoto: UIImageView!
+    @IBOutlet weak var atvIndicator: UIActivityIndicatorView!
     
     //MARK: Variables
     private let cells = [
@@ -124,7 +125,14 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
             
             if let photo = data{
                 let riversRef = storageRef.child("images/\(name)-\(Date().timeIntervalSinceNow).jpg")
+                
+                atvIndicator.transform = atvIndicator.transform.scaledBy(x: 3, y: 3)
+                atvIndicator.hidesWhenStopped = true
+                atvIndicator.startAnimating()
+                
                 riversRef.putData(photo, metadata: nil){ (metadata, error) in
+                    self.atvIndicator.stopAnimating()
+                    
                     guard let metadata = metadata else {
                         print(error)
                         return
