@@ -71,4 +71,10 @@ extension NameUserTextfieldTableViewCell: UITextFieldDelegate{
         
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        
+    }
+    
 }

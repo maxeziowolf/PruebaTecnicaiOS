@@ -62,6 +62,11 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         
         btnUpload.layer.cornerRadius = 20
         
+        atvIndicator.transform = atvIndicator.transform.scaledBy(x: 3, y: 3)
+        atvIndicator.hidesWhenStopped = true
+        atvIndicator.startAnimating()
+        atvIndicator.stopAnimating()
+        
     }
     
     private func setupTable(){
@@ -126,8 +131,6 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
             if let photo = data{
                 let riversRef = storageRef.child("images/\(name)-\(Date().timeIntervalSinceNow).jpg")
                 
-                atvIndicator.transform = atvIndicator.transform.scaledBy(x: 3, y: 3)
-                atvIndicator.hidesWhenStopped = true
                 atvIndicator.startAnimating()
                 
                 riversRef.putData(photo, metadata: nil){ (metadata, error) in
