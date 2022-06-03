@@ -117,10 +117,10 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         let data = image?.pngData()
 
         // Create a reference to the file you want to upload
-        let riversRef = storageRef.child("images/\(userName!).png")
-
-        // Upload the file to the path "images/rivers.jpg"
-        riversRef.putData(data!, metadata: nil)
+        if let name = userName{
+            let riversRef = storageRef.child("images/\(name).jpg")
+            riversRef.putData(data!, metadata: nil)
+        }
         
     }
     
