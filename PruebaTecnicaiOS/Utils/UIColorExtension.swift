@@ -121,3 +121,16 @@ extension UIColor {
 
 }
 
+extension Date{
+    
+    func getCurrentDateString() -> String {
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy-mm-ss"
+        
+        return formatter.string(from: self)
+        
+    }
+    
+}
+

@@ -129,7 +129,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         if let name = userName{
             
             if let photo = data{
-                let riversRef = storageRef.child("images/\(name)-\(Date().timeIntervalSinceNow).jpg")
+                let riversRef = storageRef.child("images/\(name)-\(Date().getCurrentDateString()).jpg")
                 
                 atvIndicator.startAnimating()
                 
